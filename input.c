@@ -4,7 +4,7 @@
 #include "config.h"
 #include "slms.h"
 
-static char BUFFER[BUFSIZ];
+char BUFFER[BUFSIZ];
 
 int readline(int n)
 {
@@ -19,6 +19,9 @@ int readline(int n)
   }
 
   BUFFER[i] = '\0';
+  setx(1);
+  sety(gety() + 1);
+
   return i;
 }
 
@@ -26,7 +29,17 @@ int prompt(int n, const char* s)
 {
   /* todo: move cursor to insertion area */
   /* before print s and readline */
+  int retval;
+  int x_pos;
+  int y_pos;
+
+  x_pos = getx();
+  y_pos = gety();
+
   movecur(1, MAXHEIGHT);
   prints(s);
-  return readline(n);
+  retval = readline(n);
+  movecur(x_pos, y_pos);
+
+  return retval;
 }
