@@ -1,3 +1,6 @@
+typedef struct _BOOK_DATA book;
+
+
 /*=== OUTPUT ===*/
 
 /* initialize: set up variables */
@@ -29,6 +32,12 @@ int getx(void);
 
 /* gety: returns value of CURSOR_Y */
 int gety(void);
+
+/* setx: sets value of CURSOR_X to x and returns it */
+int setx(int);
+
+/* sety: sets value of CURSOR_Y to x and returns it */
+int sety(int);
 
 /*=== INPUT ===*/
 
