@@ -18,6 +18,9 @@ int readline(int n)
     BUFFER[i++] = c;
   }
 
+  if (c == EOF && i == 0)
+    return EOF;
+
   BUFFER[i] = '\0';
   setx(1);
   sety(gety() + 1);
@@ -27,8 +30,6 @@ int readline(int n)
 
 int prompt(int n, const char* s)
 {
-  /* todo: move cursor to insertion area */
-  /* before print s and readline */
   int retval;
   int x_pos;
   int y_pos;
@@ -37,6 +38,7 @@ int prompt(int n, const char* s)
   y_pos = gety();
 
   movecur(1, MAXHEIGHT);
+  clearl();
   prints(s);
   retval = readline(n);
   movecur(x_pos, y_pos);
