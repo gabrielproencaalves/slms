@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "escapes.h"
+#include "slms.h"
 #include "config.h"
 
 /* This macro moves the cursor x times to the right
@@ -208,4 +209,14 @@ int getx(void)
 int gety(void)
 {
   return CURSOR_Y;
+}
+
+int setx(int x)
+{
+  return (CURSOR_X = x);
+}
+
+int sety(int x)
+{
+  return (CURSOR_Y = x);
 }
