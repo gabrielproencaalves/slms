@@ -91,7 +91,7 @@ void initialize(void)
 int newline(void)
 {
   /* If cursor is on last line */
-  if (CURSOR_Y == MAXHEIGHT - 1)
+  if (CURSOR_Y == MAXHEIGHT)
     return 0; /* Bad signal */
 
   CURSOR_DOWNWARD(1);  /* Move cursor down */
