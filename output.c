@@ -77,7 +77,14 @@ static int LAST_PRINTL; /* Last printed line         */
 /* initialize: set up panel and variables */
 void initialize(void)
 {
-  CURSOR_X = CURSOR_Y = 1; /* Define x/y cursor coordinates */
+  CURSOR_X = CURSOR_Y = 1;
+
+  /* Provide the necessary height for program execution */
+  for (; CURSOR_X < MAXHEIGHT + 1; CURSOR_X = ++CURSOR_Y)
+    putchar('\n');
+
+  /* Get back to initial position */
+  movecur(1, 1);
 }
 
 /* newline: print a newline on panel */
