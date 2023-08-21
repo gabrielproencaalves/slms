@@ -98,8 +98,8 @@ int printc(char c)
 {
   /* If cursor reaches the margin or */
   /* the character to be printed is a newline */
-  if ((CURSOR_X == MAXWIDTH) || (c == '\n'))
-    if (!newline())
+  if ((CURSOR_X == MAXWIDTH + 1) || (c == '\n'))
+    if (!newline() || c == '\n')
       return 0;
 
   /* If the new line printed is less */
