@@ -1,20 +1,23 @@
 CC = c89
 CFLAGS = -Werror -Wall
 .RECIPEPREFIX = >
+SRCS = main.c \
+       issuebook.c \
+       output.c \
+       searchbook.c \
+       viewbook.c \
+       input.c \
+       file.c
 
 debug: CFLAGS += -g
 debug: install
 
 install: obj
->  $(CC) $(CFLAGS) main.o issuebook.o output.o \
-                   searchbook.o viewbook.o input.o \
-                   slms.c \
-                   -o slms
+>  $(CC) $(CFLAGS) ${SRCS:c=o} -o slms
 
-obj: main.c issuebook.c output.c  searchbook.c viewbook.c input.c slms.c
->  $(CC) $(CFLAGS) -c main.c issuebook.c output.c \
-                   searchbook.c viewbook.c input.c \
-                   slms.c
+obj: $(SRCS)
+>  $(CC) $(CFLAGS) -c $(SRCS)
+
 clean:
 >  rm *.o \
       slms
