@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void _goto_start_of_line(FILE* file)
+{  while(fgetc(file) != '\n')
+    fseek(file, -2, SEEK_CUR);
+}
+
 CSV* csv_open(const char* path)
 {
   CSV* csv = malloc(sizeof(CSV));
@@ -83,6 +88,71 @@ CSV* csv_open(const char* path)
   csv.line = 1;
 
   return csv;
+}
+
+int csv_seek(CSV* csv, int offset, int whence)
+{
+  char c;
+
+  if (csv == NULL)
+    return 0;
+
+  switch (whence)p
+  {
+    case SEEK_SET:
+      /* if already on first line then
+         just go to the start of line */
+
+      if (csv.line == 1) {
+        fseek(csv.file, -1, SEEK_CUR);
+        _goto_start_of_line(csv.file);
+        break;
+      }
+
+      /* else, goto the first line */
+      while (csv.line > 1) {
+        fseek(csv.file, -2, SEEK_CUR);
+        _goto_start_of_line(csv.file);
+        csv.line--;
+      }
+      break;
+
+    case SEEK_END:
+    {
+      while ((c=fgetc(csv.file)) != EOF)
+        if (c == '\n')
+          csv.line++;
+        fseek(csv.file, -2, SEEK_CUR);
+        _goto_start_of_line(csv.file);
+        csv.line--;
+      break;
+    }
+  }
+
+  if (offset != 0 && (offset + line) > 0) {
+    int n = offset;
+
+    if (offset < 0) {
+      while (n++ != 0) {
+        fseek(csv.file, -2, SEEK_CUR);
+        _goto_start_of_line(csv.file);
+        csv.line--;
+      }
+
+      return offset;
+    }
+
+    while (n-- != 0) {
+      while ((c=fgetc(csv.file)) != EOF) {
+        if (c == '\n') {
+          csv.line++;
+          break;
+        }
+      }
+    }
+  }
+
+  return offset;
 }
 
 void csv_close(CSV* csv)

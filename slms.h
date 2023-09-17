@@ -63,6 +63,9 @@ int prompt(int, const char*);
 /* csv_open: opens a csv file and returns a pointer to it */
 CSV* csv_open(const char*);
 
+/* csv_seek: moves file index from WHENCE to OFFSET */
+int csv_seek(CSV*, int, int);
+
 /* csv_close: frees the csv file pointer */
 void csv_close(CSV*);
 
