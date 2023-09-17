@@ -58,4 +58,9 @@ int readline(int);
 /* prompt: prints s and reads n characters from stdin */
 int prompt(int, const char*);
 
+/*=== CSV ===*/
+
+/* csv_open: opens a csv file and returns a pointer to it */
+CSV* csv_open(const char*);
+
 #endif
