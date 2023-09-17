@@ -1,5 +1,16 @@
-typedef struct _BOOK_DATA book;
+#ifndef SLMS_H
+#define SLMS_H
 
+typedef struct _book_data {
+  unsigned long int id;
+  char* title;
+  char* author;
+  char* desc;
+  int year;
+  int specimens;
+  int borrows;
+  unsigned long int isbn;
+} book ;
 
 /*=== OUTPUT ===*/
 
@@ -46,3 +57,5 @@ int readline(int);
 
 /* prompt: prints s and reads n characters from stdin */
 int prompt(int, const char*);
+
+#endif
