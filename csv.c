@@ -84,3 +84,14 @@ CSV* csv_open(const char* path)
 
   return csv;
 }
+
+void csv_close(CSV* csv)
+{
+  int n;
+
+  for (n = 0; csv.headers[n] && n < MAX_HEADERS_NUM; n++)
+    free(csv.headers[n]);
+
+  fclose(csv.file);
+  free(csv);
+}

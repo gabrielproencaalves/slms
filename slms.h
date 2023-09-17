@@ -63,4 +63,7 @@ int prompt(int, const char*);
 /* csv_open: opens a csv file and returns a pointer to it */
 CSV* csv_open(const char*);
 
+/* csv_close: frees the csv file pointer */
+void csv_close(CSV*);
+
 #endif
