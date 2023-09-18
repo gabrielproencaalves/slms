@@ -1,6 +1,6 @@
-#ifndef CSV
-#define CSV
-
+#ifndef CSV_H
+#define CSV_H
+#include "stdio.h"
 #define MAX_HEADERS_NUM 7
 
 typedef struct csv_file {

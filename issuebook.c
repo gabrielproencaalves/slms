@@ -24,7 +24,7 @@ void add_book(CSV* db)
   tmp_book_data.year = atoi(BUFFER);
 
   prompt(0, "Specimens: ");
-  tmp_book_data.speciments = atoi(BUFFER);
+  tmp_book_data.specimens = atoi(BUFFER);
 
   prompt(0, "ISBN: ");
 

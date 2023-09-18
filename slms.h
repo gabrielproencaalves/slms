@@ -1,5 +1,6 @@
 #ifndef SLMS_H
 #define SLMS_H
+#include "csv.h"
 
 typedef struct _book_data {
   unsigned long int id;
