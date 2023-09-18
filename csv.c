@@ -9,9 +9,10 @@ void _goto_start_of_line(FILE* file)
 
 CSV* csv_open(const char* path)
 {
-  CSV* csv = malloc(sizeof(CSV));
 
+  CSV* csv = malloc(sizeof(CSV));
   csv.file = fopen(path, "r+");
+  csv.size = 0;
 
   if (csv.file = NULL)
     csv.file = fopen(path, "w+");
@@ -53,11 +54,6 @@ CSV* csv_open(const char* path)
     char* tmp;
     char buffer[BUFSIZ] = "";
 
-    /* while blank spaces, next character  */
-    while ((c=fgetc(csv.file)) == ' ' || c == '\n');
-    /* push c back to file */
-    ungetc(c, csv.file);
-
     fgets(buffer, BUFSIZ, csv.file);
 
     tmp = strtok(BUFFER, ",");
@@ -70,7 +66,8 @@ CSV* csv_open(const char* path)
       strcpy(csv.headers[c], tmp);
     }
 
-    { /* remove the final '\n' character from csv.headers[c] */
+    {
+      /* remove the final '\n' character from csv.headers[c] */
       int last_header_size = strlen(csv.headers[c]);
       tmp = csv.headers[c];
 
@@ -83,6 +80,14 @@ CSV* csv_open(const char* path)
     }
 
     csv.n_headers = c + 1;
+
+    while ((c=fgetc(csv.file)) != EOF)
+      if (c == '\n')
+        csv.size++;
+
+    fseek(csv.file, 0, SEEK_SET);
+
+    while (fgetc(csv.file) != '\n');
   }
 
   csv.line = 1;

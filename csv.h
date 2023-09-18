@@ -8,6 +8,7 @@ typedef struct csv_file {
   char* headers[MAX_HEADERS_NUM];
   int n_headers;
   unsigned long int line;
+  long size;
 } CSV;
 
 #endif
