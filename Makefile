@@ -7,7 +7,7 @@ SRCS = main.c \
        searchbook.c \
        viewbook.c \
        input.c \
-       file.c
+       csv.c
 
 debug: CFLAGS += -g
 debug: install
