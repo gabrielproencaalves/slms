@@ -37,7 +37,7 @@ int main(void)
       if (strncmp(BUFFER, CMDS[CMD_INDEX], MAXCMDLEN) == 0) {
         switch (CMD_INDEX) {
           case ADD:
-
+            add_book(db);
             break;
           case REMOVE:
 
