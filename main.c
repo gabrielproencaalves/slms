@@ -1,3 +1,4 @@
+#include "config.h"
 #include "slms.h"
 #include <stdio.h>
 #include <string.h>
@@ -27,6 +28,7 @@ static char* CMDS[] = {
 int main(void)
 {
   initialize();
+  CSV* db = csv_open(DBPATH);
 
   while (prompt(0, DEFAULT_PROMPT_MSG) != EOF) {
     int CMD_INDEX;
@@ -35,6 +37,7 @@ int main(void)
       if (strncmp(BUFFER, CMDS[CMD_INDEX], MAXCMDLEN) == 0) {
         switch (CMD_INDEX) {
           case ADD:
+
             break;
           case REMOVE:
 
@@ -49,7 +52,9 @@ int main(void)
 
             break;
           case QUIT:
+            csv_close(db);
             return 0;
+            break;
         }
 
         break;
@@ -57,5 +62,6 @@ int main(void)
     }
   }
 
+  csv_close(db);
   return 0;
 }
