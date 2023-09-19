@@ -67,6 +67,8 @@ CSV* csv_open(const char* path)
       strcpy(csv->headers[c], tmp);
     }
 
+    --c;
+
     {
       /* remove the final '\n' character from csv->headers[c] */
       int last_header_size = strlen(csv->headers[c]);
