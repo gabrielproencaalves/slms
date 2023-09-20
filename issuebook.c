@@ -5,20 +5,22 @@
 
 extern char BUFFER[];
 
+
+#define getinfo(to, type) \
+  to = malloc(prompt(0, type ": ") + 1); \
+  strcpy(to, BUFFER)
+
 void add_book(CSV* db)
 {
   book tmp_book_data;
 
   tmp_book_data.id = db->size + 1;
 
-  tmp_book_data.title = malloc(prompt(0, "Title: ") + 1);
-  strcpy(tmp_book_data.title, BUFFER);
+  getinfo(tmp_book_data.title, "Title");
 
-  tmp_book_data.author = malloc(prompt(0, "Author: ") + 1);
-  strcpy(tmp_book_data.author, BUFFER);
+  getinfo(tmp_book_data.author, "Author");
 
-  tmp_book_data.desc = malloc(prompt(0, "Description: ") + 1);
-  strcpy(tmp_book_data.desc, BUFFER);
+  getinfo(tmp_book_data.desc, "Description");
 
   prompt(0, "Year: ");
   tmp_book_data.year = atoi(BUFFER);
@@ -27,8 +29,17 @@ void add_book(CSV* db)
   tmp_book_data.specimens = atoi(BUFFER);
 
   prompt(0, "ISBN: ");
+  tmp_book_data.isbn = parse_isbn(BUFFER);
+
+  tmp_book_data.borrows = 0;
+
+  /* TODO: put a insertion algorithm here */
+  /* oriented by book titles */
 
   free(tmp_book_data.title);
   free(tmp_book_data.author);
   free(tmp_book_data.desc);
+  free(tmp_book_data.isbn);
 }
+
+#undef getinfo
