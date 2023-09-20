@@ -10,7 +10,7 @@ typedef struct _book_data {
   int year;
   int specimens;
   int borrows;
-  unsigned long int isbn;
+  short* isbn;
 } book ;
 
 /*=== OUTPUT ===*/
