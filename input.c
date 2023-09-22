@@ -10,12 +10,29 @@ int readline(int n)
 {
   char c;
   int i = 0;
+  bool inside = true;
 
   if (n == 0)
     n = BUFSIZ;
 
-  while ((c = getchar()) != EOF && c != '\n' && i < n) {
-    BUFFER[i++] = c;
+  while ((c = getchar()) == ' ' || c == '\t');
+
+  n--;
+  while (c != EOF && c != '\n' && i < n) {
+    if (c != ' ' && c != '\t') {
+      if (!inside) {
+        if ((i + 1) >= n)
+          break;
+        BUFFER[i++] = ' ';
+      }
+
+      inside = true;
+      BUFFER[i++] = c;
+    }
+    else
+      inside = false;
+
+    c = getchar();
   }
 
   if (c == EOF && i == 0)
