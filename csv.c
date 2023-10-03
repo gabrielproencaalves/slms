@@ -98,6 +98,22 @@ CSV* csv_open(const char* path)
   return csv;
 }
 
+int csv_write(CSV* csv, char** s_list)
+{
+  int n;
+  int len = (sizeof(s_list)/sizeof(s_list[0]));
+
+  fputs(s_list[0]);
+  for (n = 1; n < len; ++n) {
+    fputc(',');
+    fputs(s_list[n]);
+  }
+  fputc('\n');
+  csv.line++;
+
+  return n + 1;
+}
+
 int csv_seek(CSV* csv, int offset, int whence)
 {
   int c;
