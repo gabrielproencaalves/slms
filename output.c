@@ -3,40 +3,6 @@
 #include "slms.h"
 #include "config.h"
 
-/* This macro moves the cursor x times to the right
-   and updates the variable CURSOR_X */
-#define CURSOR_FORWARD(x) \
-  do {                    \
-    CUF((x));             \
-    CURSOR_X += (x);      \
-  } while (0)
-
-/* This macro moves the cursor x times to the left
-   and updates the variable CURSOR_X */
-#define CURSOR_BACKWARD(x) \
-  do {                     \
-    CUB((x));              \
-    CURSOR_X -= (x);       \
-  } while (0)
-
-/* This macro moves the cursor up x times
-   and updates the variable CURSOR_Y */
-#define CURSOR_UPWARD(x)         \
-  do {                           \
-    CPL((x));                    \
-    CURSOR_Y -= (x);             \
-    CUF(CURSOR_X - 1); \
-  } while (0)
-
-/* This macro moves the cursor down x times
-   and updates the variable CURSOR_Y */
-#define CURSOR_DOWNWARD(x)       \
-  do {                           \
-    CNL((x));                    \
-    CURSOR_Y += (x);             \
-    CUF(CURSOR_X - 1); \
-  } while (0)
-
 static int CURSOR_X;    /* Current X cursor position */
 static int CURSOR_Y;    /* Current Y cursor position */
 static int LAST_PRINTL; /* Last printed line         */
@@ -44,36 +10,44 @@ static int LAST_PRINTL; /* Last printed line         */
 /* This macro moves the cursor x times to the right
    and updates the variable CURSOR_X */
 #define CURSOR_FORWARD(x) \
-  do {                    \
-    CUF((x));             \
-    CURSOR_X += (x);      \
-  } while (0)
+  do                      \
+    {                     \
+      CUF((x));           \
+      CURSOR_X += (x);    \
+    }                     \
+  while (0)
 
 /* This macro moves the cursor x times to the left
    and updates the variable CURSOR_X */
 #define CURSOR_BACKWARD(x) \
-  do {                     \
-    CUB((x));              \
-    CURSOR_X -= (x);       \
-  } while (0)
+  do                       \
+    {                      \
+      CUB((x));            \
+      CURSOR_X -= (x);     \
+    }                      \
+  while (0)
 
 /* This macro moves the cursor up x times
    and updates the variable CURSOR_Y */
-#define CURSOR_UPWARD(x)         \
-  do {                           \
-    CPL((x));                    \
-    CURSOR_Y -= (x);             \
-    CUF(CURSOR_X - 1); \
-  } while (0)
+#define CURSOR_UPWARD(x)   \
+  do                       \
+    {                      \
+      CPL((x));            \
+      CURSOR_Y -= (x);     \
+      CUF(CURSOR_X - 1);   \
+    }                      \
+  while (0)
 
 /* This macro moves the cursor down x times
    and updates the variable CURSOR_Y */
-#define CURSOR_DOWNWARD(x)       \
-  do {                           \
-    CNL((x));                    \
-    CURSOR_Y += (x);             \
-    CUF(CURSOR_X - 1); \
-  } while (0)
+#define CURSOR_DOWNWARD(x) \
+  do                       \
+    {                      \
+      CNL((x));            \
+      CURSOR_Y += (x);     \
+      CUF(CURSOR_X - 1);   \
+    }                      \
+  while (0)
 
 /* initialize: set up panel and variables */
 void initialize(void)
@@ -157,20 +131,22 @@ void movecur(int x, int y)
     return;
 
   /* Just moves x if it is different of request */
-  if (CURSOR_X != x) {
-    if (CURSOR_X > x)
-      CURSOR_BACKWARD(CURSOR_X - x);
-    else
-      CURSOR_FORWARD(x - CURSOR_X);
-  }
+  if (CURSOR_X != x)
+    {
+      if (CURSOR_X > x)
+        CURSOR_BACKWARD(CURSOR_X - x);
+      else
+        CURSOR_FORWARD(x - CURSOR_X);
+    }
 
   /* Just moves y if it is different of request */
-  if (CURSOR_Y != y) {
-    if (CURSOR_Y > y)
-      CURSOR_UPWARD(CURSOR_Y - y);
-    else
-      CURSOR_DOWNWARD(y - CURSOR_Y);
-  }
+  if (CURSOR_Y != y)
+    {
+      if (CURSOR_Y > y)
+        CURSOR_UPWARD(CURSOR_Y - y);
+      else
+        CURSOR_DOWNWARD(y - CURSOR_Y);
+    }
 }
 
 /* clearc(x): clears x characters */
@@ -194,10 +170,12 @@ void clearl(void)
 /* clear: clears the panel */
 void clear(void)
 {
-  while (CURSOR_Y > 1) {
-    clearl();
-    CURSOR_UPWARD(1);
-  }
+  while (CURSOR_Y > 1)
+    {
+      clearl();
+      CURSOR_UPWARD(1);
+    }
+
   clearl();
 }
 
