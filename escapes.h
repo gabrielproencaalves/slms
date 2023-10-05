@@ -67,4 +67,4 @@
   if (x > 0)                                                       \
     printf(ESC CSI "%iT", ((x) > MAX_ESC_VAL) ? MAX_ESC_VAL : (x))
 
-#endif
+#endif /* ESCAPES_H */
