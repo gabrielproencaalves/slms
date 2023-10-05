@@ -14,7 +14,7 @@ typedef struct _book_data {
   int year;
   int specimens;
   int borrows;
-  short* isbn;
+  char* isbn;
 } book ;
 
 /*=== OUTPUT ===*/
