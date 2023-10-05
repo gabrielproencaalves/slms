@@ -18,22 +18,26 @@ int readline(int n)
   while ((c = getchar()) == ' ' || c == '\t');
 
   n--;
-  while (c != EOF && c != '\n' && i < n) {
-    if (c != ' ' && c != '\t') {
-      if (!inside) {
-        if ((i + 1) >= n)
-          break;
-        BUFFER[i++] = ' ';
-      }
+  while (c != EOF && c != '\n' && i < n)
+    {
+      if (c != ' ' && c != '\t')
+        {
+          if (!inside)
+            {
+              if ((i + 1) >= n)
+                break;
 
-      inside = true;
-      BUFFER[i++] = c;
+              BUFFER[i++] = ' ';
+            }
+
+          inside = true;
+          BUFFER[i++] = c;
+        }
+      else
+        inside = false;
+
+      c = getchar();
     }
-    else
-      inside = false;
-
-    c = getchar();
-  }
 
   if (c == EOF && i == 0)
     return EOF;
