@@ -102,19 +102,18 @@ CSV* csv_open(const char* path)
   return csv;
 }
 
-int csv_write(CSV* csv, char** s_list)
+int csv_write(CSV* csv, char** s_list, int len)
 {
   int n;
-  int len = (sizeof(s_list)/sizeof(s_list[0]));
 
-  fputs(s_list[0]);
+  fputs(s_list[0], csv->file);
   for (n = 1; n < len; ++n)
     {
-      fputc(',');
-      fputs(s_list[n]);
+      fputc(',', csv->file);
+      fputs(s_list[n], csv->file);
     }
-  fputc('\n');
-  csv.line++;
+  fputc('\n', csv->file);
+  csv->line++;
 
   return n + 1;
 }
