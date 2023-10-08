@@ -6,7 +6,8 @@
 
 char BUFFER[BUFSIZ];
 
-int readline(int n)
+int
+readline(int n)
 {
   char c;
   int i = 0;
@@ -49,7 +50,8 @@ int readline(int n)
   return i;
 }
 
-int prompt(int n, const char* s)
+int
+prompt(int n, const char* s)
 {
   int retval;
   int x_pos;
