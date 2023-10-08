@@ -3,7 +3,8 @@
 #include "stdio.h"
 #define MAX_HEADERS_NUM 7
 
-typedef struct csv_file {
+typedef struct csv_file
+{
   FILE* file;
   char* headers[MAX_HEADERS_NUM];
   int n_headers;
