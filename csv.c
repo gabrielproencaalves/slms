@@ -3,13 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-void _goto_start_of_line(FILE* file)
+void
+_goto_start_of_line(FILE* file)
 {
   while(fgetc(file) != '\n')
     fseek(file, -2, SEEK_CUR);
 }
 
-CSV* csv_open(const char* path)
+CSV*
+csv_open(const char* path)
 {
 
   CSV* csv = malloc(sizeof(CSV));
@@ -110,7 +112,8 @@ CSV* csv_open(const char* path)
   return csv;
 }
 
-int csv_write(CSV* csv, char** s_list, int len)
+int
+csv_write(CSV* csv, char** s_list, int len)
 {
   int n;
 
@@ -126,7 +129,8 @@ int csv_write(CSV* csv, char** s_list, int len)
   return n + 1;
 }
 
-int csv_seek(CSV* csv, int offset, int whence)
+int
+csv_seek(CSV* csv, int offset, int whence)
 {
   int c;
 
@@ -200,7 +204,8 @@ int csv_seek(CSV* csv, int offset, int whence)
   return offset;
 }
 
-void csv_close(CSV* csv)
+void
+csv_close(CSV* csv)
 {
   int n;
 
