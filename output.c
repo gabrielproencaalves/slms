@@ -2,6 +2,7 @@
 #include "escapes.h"
 #include "slms.h"
 #include "config.h"
+#include "output.h"
 
 static int CURSOR_X;    /* Current X cursor position */
 static int CURSOR_Y;    /* Current Y cursor position */
