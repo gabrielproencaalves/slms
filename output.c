@@ -50,7 +50,8 @@ static int LAST_PRINTL; /* Last printed line         */
   while (0)
 
 /* initialize: set up panel and variables */
-void initialize(void)
+void
+initialize(void)
 {
   CURSOR_X = CURSOR_Y = 1;
 
@@ -63,7 +64,8 @@ void initialize(void)
 }
 
 /* newline: print a newline on panel */
-int newline(void)
+int
+newline(void)
 {
   /* If cursor is on last line */
   if (CURSOR_Y == MAXHEIGHT)
@@ -76,7 +78,8 @@ int newline(void)
 }
 
 /* printc(c): print the character c on panel */
-int printc(char c)
+int
+printc(char c)
 {
   /* If cursor reaches the margin or */
   /* the character to be printed is a newline */
@@ -96,7 +99,8 @@ int printc(char c)
 }
 
 /* prints(s): print the string s on panel */
-int prints(const char *s)
+int
+prints(const char *s)
 {
   int i;
 
@@ -110,7 +114,8 @@ int prints(const char *s)
 }
 
 /* printsn(s, n): print s at maximum n characters */
-int printsn(char* s, int n)
+int
+printsn(char* s, int n)
 {
   int i;
 
@@ -124,7 +129,8 @@ int printsn(char* s, int n)
 }
 
 /* movecur(x, y): moves the cursor to x and y */
-void movecur(int x, int y)
+void
+movecur(int x, int y)
 {
   /* Checks if parameters extrapolate margin */
   if (x > MAXWIDTH || y > MAXHEIGHT)
@@ -150,14 +156,16 @@ void movecur(int x, int y)
 }
 
 /* clearc(x): clears x characters */
-void clearc(int x)
+void
+clearc(int x)
 {
   while (x--)
     printc(' ');
 }
 
 /* clearl:  clears the line */
-void clearl(void)
+void
+clearl(void)
 {
   CURSOR_BACKWARD(CURSOR_X - 1);
 
@@ -168,7 +176,8 @@ void clearl(void)
 }
 
 /* clear: clears the panel */
-void clear(void)
+void
+clear(void)
 {
   while (CURSOR_Y > 1)
     {
@@ -179,22 +188,26 @@ void clear(void)
   clearl();
 }
 
-int getx(void)
+int
+getx(void)
 {
   return CURSOR_X;
 }
 
-int gety(void)
+int
+gety(void)
 {
   return CURSOR_Y;
 }
 
-int setx(int x)
+int
+setx(int x)
 {
   return (CURSOR_X = x);
 }
 
-int sety(int x)
+int
+sety(int x)
 {
   return (CURSOR_Y = x);
 }
