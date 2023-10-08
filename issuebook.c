@@ -1,4 +1,5 @@
 #include "slms.h"
+#include "input.h"
 #include "csv.h"
 #include <stdlib.h>
 #include <string.h>
