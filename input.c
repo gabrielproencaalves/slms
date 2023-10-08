@@ -3,6 +3,7 @@
 #include <string.h>
 #include "config.h"
 #include "slms.h"
+#include "output.h"
 
 char BUFFER[BUFSIZ];
 
