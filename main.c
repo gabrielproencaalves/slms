@@ -1,5 +1,9 @@
 #include "config.h"
 #include "slms.h"
+#include "input.h"
+#include "output.h"
+#include "issuebook.h"
+#include "csv.h"
 #include <stdio.h>
 #include <string.h>
 #define NCMD 6          /* Number of available commands */
