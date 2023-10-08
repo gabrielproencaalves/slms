@@ -24,7 +24,15 @@ CSV* csv_open(const char* path)
     {
 
       /* insert the headers in the file */
-      fputs("title,author,desc,year,specimens,borrows,isbn\n", csv->file);
+      csv_write(csv,
+       (char* []) {"title",
+                 "author",
+                 "desc",
+                 "year",
+                 "specimens",
+                 "borrows",
+                 "isbn"},
+                MAX_HEADERS_NUM);
 
       /* copy the headers information to csv struct */
       /* for later uses */
