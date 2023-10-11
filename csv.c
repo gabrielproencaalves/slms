@@ -126,6 +126,10 @@ csv_write(CSV* csv, char** s_list, int len)
   fputc('\n', csv->file);
   csv->line++;
 
+  /* if a new line was appended */
+  if (csv->line - csv->size == 2)
+    csv->size++;
+
   return n + 1;
 }
 
